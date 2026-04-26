@@ -2,162 +2,159 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>VeilRP Ad Editor</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Rajdhani:wght@500;600;700&family=Orbitron:wght@400;700&family=Bebas+Neue&family=Exo+2:wght@300;400;700;800&family=Josefin+Sans:wght@300;400;700&family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet">
+<title>VeilRP Poster Editor</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Cinzel+Decorative:wght@700;900&family=Rajdhani:wght@500;600;700&family=Orbitron:wght@700;900&family=Bebas+Neue&family=Exo+2:wght@300;700;800&family=Josefin+Sans:wght@300;400;700&family=Space+Grotesk:wght@300;400;700&family=Playfair+Display:wght@700;900&family=Cormorant+Garamond:wght@700&family=Abril+Fatface&family=Black+Han+Sans&family=Righteous&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:#0d0d0d;color:#ccc;font-family:'Space Grotesk',Arial,sans-serif;display:flex;flex-direction:column;align-items:center;padding:16px;gap:12px;}
-h1{color:#e0e0e0;font-size:14px;letter-spacing:.15em;margin-top:4px;font-weight:400;}
-.panel{background:#141414;border:1px solid #2a2a2a;border-radius:10px;padding:14px;width:980px;display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
-.sec{grid-column:1/-1;font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.2em;border-bottom:1px solid #222;padding-bottom:3px;margin-top:6px;}
+body{background:#0d0d0d;color:#ccc;font-family:'Space Grotesk',Arial,sans-serif;display:flex;gap:20px;padding:20px;min-height:100vh;align-items:flex-start;justify-content:center;}
+.sidebar{width:320px;flex-shrink:0;display:flex;flex-direction:column;gap:10px;}
+h1{color:#e0e0e0;font-size:13px;letter-spacing:.15em;font-weight:400;padding:4px 0;}
+.panel{background:#141414;border:1px solid #2a2a2a;border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:8px;}
+.sec{font-size:9px;color:#666;text-transform:uppercase;letter-spacing:.2em;border-bottom:1px solid #222;padding-bottom:3px;margin-top:4px;}
 .sec:first-child{margin-top:0;}
 .cg{display:flex;flex-direction:column;gap:3px;}
-.span2{grid-column:span 2;}
-label{font-size:10px;color:#888;letter-spacing:.06em;text-transform:uppercase;}
-input[type=text],select{background:#0d0d0d;border:1px solid #2a2a2a;border-radius:4px;color:#e0e0e0;padding:5px 8px;font-size:12px;width:100%;outline:none;font-family:'Space Grotesk',Arial,sans-serif;}
-input[type=text]:focus,select:focus{border-color:#555;}
-input[type=color]{width:42px;height:28px;border:1px solid #2a2a2a;border-radius:4px;background:#0d0d0d;cursor:pointer;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+label{font-size:10px;color:#666;letter-spacing:.04em;text-transform:uppercase;}
+input[type=text],select,textarea{background:#0d0d0d;border:1px solid #2a2a2a;border-radius:4px;color:#e0e0e0;padding:5px 8px;font-size:11px;width:100%;outline:none;font-family:'Space Grotesk',Arial,sans-serif;resize:none;}
+input[type=color]{width:100%;height:26px;border:1px solid #2a2a2a;border-radius:4px;background:#0d0d0d;cursor:pointer;}
 input[type=range]{width:100%;accent-color:#a855f7;}
-input[type=file]{font-size:11px;color:#888;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:4px;padding:4px;width:100%;}
-.row{display:flex;gap:8px;grid-column:1/-1;flex-wrap:wrap;}
-button{border:1px solid #333;color:#e0e0e0;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:500;letter-spacing:.06em;transition:all .15s;background:#1e1e1e;font-family:'Space Grotesk',Arial,sans-serif;}
-button:hover{background:#2a2a2a;border-color:#555;}
-.bd{border-color:#4a1a3a;color:#f0c0d8;background:#1a0d14;}
-.bd:hover{background:#2a1020;}
-canvas{border:1px solid #222;border-radius:6px;display:block;}
-.val{font-size:10px;color:#888;margin-left:4px;}
-.cgrid{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-.cslot{display:flex;flex-direction:column;gap:5px;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:6px;padding:10px;}
-.cslot>.stitle{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.1em;text-align:center;}
-.sq-prev{width:64px;height:64px;border-radius:10px;border:1px solid #333;object-fit:cover;display:none;margin:0 auto 2px;}
-.sq-ph{width:64px;height:64px;border-radius:10px;border:1px dashed #2a2a2a;display:flex;align-items:center;justify-content:center;margin:0 auto 2px;font-size:20px;color:#333;}
-.tog{display:flex;align-items:center;gap:6px;margin-top:2px;}
-.tog input{accent-color:#a855f7;width:14px;height:14px;}
+input[type=file]{font-size:10px;color:#666;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:4px;padding:3px;width:100%;}
+.tog{display:flex;align-items:center;gap:6px;}
+.tog input{accent-color:#a855f7;width:13px;height:13px;}
 .tog label{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.04em;}
-.szrow{display:flex;align-items:center;gap:4px;}
-.szrow input[type=range]{flex:1;}
+button{border:1px solid #333;color:#e0e0e0;padding:8px 14px;border-radius:5px;cursor:pointer;font-size:11px;font-weight:500;letter-spacing:.06em;transition:all .15s;background:#1e1e1e;font-family:'Space Grotesk',Arial,sans-serif;width:100%;}
+button:hover{background:#2a2a2a;border-color:#555;}
+.bd{border-color:#3a1a4a;color:#d4a8ff;background:#130a1e;}
+.bd:hover{background:#1e1030;}
+.val{font-size:10px;color:#666;margin-left:3px;}
+.slot-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.slot{background:#0d0d0d;border:1px solid #222;border-radius:6px;padding:8px;display:flex;flex-direction:column;gap:4px;}
+.slot-ph{width:100%;aspect-ratio:1;border-radius:6px;border:1px dashed #2a2a2a;display:flex;align-items:center;justify-content:center;font-size:18px;color:#333;margin-bottom:2px;}
+.slot-prev{width:100%;aspect-ratio:1;border-radius:6px;border:1px solid #333;object-fit:cover;display:none;margin-bottom:2px;}
+canvas{border:1px solid #222;border-radius:6px;display:block;flex-shrink:0;}
 </style>
 </head>
 <body>
-<h1>VeilRP — Ad Editor</h1>
+<div class="sidebar">
+<h1>VEILRP — POSTER EDITOR</h1>
+
 <div class="panel">
-
-  <div class="sec">Logo</div>
-  <div class="cg span2"><label>Logo Size <span class="val" id="lsv">210</span></label><input type="range" id="ls" min="80" max="380" value="210" oninput="lsv.textContent=this.value"></div>
-  <div class="cg"><label>Ring Color</label><input type="color" id="lrc" value="#c084fc"></div>
-  <div class="cg"><label>Glow <span class="val" id="giv">70</span></label><input type="range" id="gi" min="0" max="140" value="70" oninput="giv.textContent=this.value"></div>
-
-  <div class="sec">Tagline</div>
-  <div class="cg span2"><label>Font</label>
-    <select id="tf">
-      <option value="Cinzel" selected>Cinzel</option>
-      <option value="Orbitron">Orbitron</option>
-      <option value="Rajdhani">Rajdhani</option>
-      <option value="Exo 2">Exo 2</option>
-      <option value="Bebas Neue">Bebas Neue</option>
-      <option value="Josefin Sans">Josefin Sans</option>
-    </select>
-  </div>
-  <div class="cg span2"><label>Text</label><input type="text" id="tag" value="BEYOND THE VEIL"></div>
-
-  <div class="sec">Story Text</div>
-  <div class="cg span2"><label>Font</label>
-    <select id="sf">
-      <option value="Josefin Sans" selected>Josefin Sans</option>
-      <option value="Cinzel">Cinzel</option>
-      <option value="Rajdhani">Rajdhani</option>
-      <option value="Exo 2">Exo 2</option>
-      <option value="Orbitron">Orbitron</option>
-    </select>
-  </div>
-  <div class="cg span2"><label>Text</label><input type="text" id="st" value="Outplay your story within this city."></div>
-
-  <div class="sec">Features</div>
-  <div class="cg span2"><label>Font</label>
-    <select id="fff">
-      <option value="Rajdhani" selected>Rajdhani</option>
-      <option value="Josefin Sans">Josefin Sans</option>
-      <option value="Cinzel">Cinzel</option>
-      <option value="Orbitron">Orbitron</option>
-      <option value="Exo 2">Exo 2</option>
-      <option value="Bebas Neue">Bebas Neue</option>
-    </select>
-  </div>
-  <div class="cg span2"><label>Feature Size <span class="val" id="fsv">28</span></label><input type="range" id="fsize" min="16" max="50" value="28" oninput="fsv.textContent=this.value"></div>
-  <div class="cg span2"><label>Feature 1</label><input type="text" id="f1" value="Actively Hiring LEO &amp; EMS"></div>
-  <div class="cg span2"><label>Feature 2</label><input type="text" id="f2" value="Weekly Events &amp; Activities"></div>
-  <div class="cg span2"><label>Feature 3</label><input type="text" id="f3" value="Fun &amp; Unique Custom Scripts"></div>
-  <div class="cg span2"><label>Feature 4</label><input type="text" id="f4" value="Thriving Active Community"></div>
-
-  <div class="sec">Welcome Line (bottom)</div>
-  <div class="cg span2"><label>Font</label>
-    <select id="wf">
-      <option value="Josefin Sans" selected>Josefin Sans</option>
-      <option value="Rajdhani">Rajdhani</option>
-      <option value="Exo 2">Exo 2</option>
-      <option value="Cinzel">Cinzel</option>
-      <option value="Orbitron">Orbitron</option>
-    </select>
-  </div>
-  <div class="cg span2"><label>Text</label><input type="text" id="wt" value="LGBTQ+ &amp; Beginner Friendly  ·  Welcoming Community  ·  Be Whatever You Want"></div>
-
-  <div class="sec">Profile Squares</div>
-  <div class="cgrid">
-    <div class="cslot">
-      <div class="stitle">Slot 1</div>
-      <div class="sq-ph" id="ph0">+</div><img class="sq-prev" id="prev0">
-      <input type="file" accept="image/*" id="file0">
-      <input type="text" id="slbl0" placeholder="Label">
-      <div style="display:flex;gap:4px;align-items:center;"><label style="white-space:nowrap">Ring</label><input type="color" id="sring0" value="#c084fc"></div>
-      <label>Size <span class="val" id="ssv0">170</span></label>
-      <div class="szrow"><input type="range" id="ssz0" min="80" max="320" value="170" oninput="ssv0.textContent=this.value"></div>
-      <div class="tog"><input type="checkbox" id="sshow0"><label for="sshow0">Show</label></div>
-    </div>
-    <div class="cslot">
-      <div class="stitle">Slot 2</div>
-      <div class="sq-ph" id="ph1">+</div><img class="sq-prev" id="prev1">
-      <input type="file" accept="image/*" id="file1">
-      <input type="text" id="slbl1" placeholder="Label">
-      <div style="display:flex;gap:4px;align-items:center;"><label style="white-space:nowrap">Ring</label><input type="color" id="sring1" value="#f472b6"></div>
-      <label>Size <span class="val" id="ssv1">170</span></label>
-      <div class="szrow"><input type="range" id="ssz1" min="80" max="320" value="170" oninput="ssv1.textContent=this.value"></div>
-      <div class="tog"><input type="checkbox" id="sshow1"><label for="sshow1">Show</label></div>
-    </div>
-    <div class="cslot">
-      <div class="stitle">Slot 3</div>
-      <div class="sq-ph" id="ph2">+</div><img class="sq-prev" id="prev2">
-      <input type="file" accept="image/*" id="file2">
-      <input type="text" id="slbl2" placeholder="Label">
-      <div style="display:flex;gap:4px;align-items:center;"><label style="white-space:nowrap">Ring</label><input type="color" id="sring2" value="#818cf8"></div>
-      <label>Size <span class="val" id="ssv2">170</span></label>
-      <div class="szrow"><input type="range" id="ssz2" min="80" max="320" value="170" oninput="ssv2.textContent=this.value"></div>
-      <div class="tog"><input type="checkbox" id="sshow2"><label for="sshow2">Show</label></div>
-    </div>
-    <div class="cslot">
-      <div class="stitle">Slot 4</div>
-      <div class="sq-ph" id="ph3">+</div><img class="sq-prev" id="prev3">
-      <input type="file" accept="image/*" id="file3">
-      <input type="text" id="slbl3" placeholder="Label">
-      <div style="display:flex;gap:4px;align-items:center;"><label style="white-space:nowrap">Ring</label><input type="color" id="sring3" value="#e879f9"></div>
-      <label>Size <span class="val" id="ssv3">170</span></label>
-      <div class="szrow"><input type="range" id="ssz3" min="80" max="320" value="170" oninput="ssv3.textContent=this.value"></div>
-      <div class="tog"><input type="checkbox" id="sshow3"><label for="sshow3">Show</label></div>
-    </div>
-  </div>
-
-  <div class="sec">Colors & Background</div>
-  <div class="cg"><label>Neon 1</label><input type="color" id="gc" value="#c084fc"></div>
-  <div class="cg"><label>Neon 2</label><input type="color" id="gc2" value="#f472b6"></div>
-  <div class="cg"><label>BG Brightness <span class="val" id="bbv">68</span>%</label><input type="range" id="bb" min="20" max="100" value="68" oninput="bbv.textContent=this.value"></div>
+  <div class="sec">Background & Logo</div>
   <div class="cg"><label>Upload Background</label><input type="file" id="bgup" accept="image/*"></div>
-  <div class="row">
-    <button onclick="render()">&#9654; Update</button>
-    <button class="bd" onclick="dl()">&#8595; Download PNG 1920×1080</button>
+  <div class="cg"><label>Logo Size <span class="val" id="lsv">160</span></label><input type="range" id="ls" min="60" max="280" value="160" oninput="lsv.textContent=this.value"></div>
+  <div class="cg"><label>Logo Ring Color</label><input type="color" id="lrc" value="#c084fc"></div>
+</div>
+
+<div class="panel">
+  <div class="sec">Hero Text</div>
+  <div class="cg"><label>Line 1 (large)</label><input type="text" id="h1t" value="VEIL RP"></div>
+  <div class="cg"><label>Line 2 (accent)</label><input type="text" id="h2t" value="Every Empire begins in the dark."></div>
+  <div class="cg"><label>Hero Font</label>
+    <select id="hf">
+      <option value="Cinzel Decorative" selected>Cinzel Decorative (Elegant)</option>
+      <option value="Cinzel">Cinzel (Classic)</option>
+      <option value="Playfair Display">Playfair Display (Editorial)</option>
+      <option value="Cormorant Garamond">Cormorant Garamond (Luxury)</option>
+      <option value="Abril Fatface">Abril Fatface (Bold Serif)</option>
+      <option value="Orbitron">Orbitron (Sci-Fi)</option>
+      <option value="Black Han Sans">Black Han Sans (Impact)</option>
+      <option value="Righteous">Righteous (Retro)</option>
+      <option value="Bebas Neue">Bebas Neue (Street)</option>
+      <option value="Rajdhani">Rajdhani (Sharp)</option>
+    </select>
+  </div>
+  <div class="row2">
+    <div class="cg"><label>Line 1 Color</label><input type="color" id="h1c" value="#ffffff"></div>
+    <div class="cg"><label>Line 2 Color</label><input type="color" id="h2c" value="#c084fc"></div>
   </div>
 </div>
-<canvas id="ad" width="1920" height="1080" style="width:980px;height:551px;"></canvas>
+
+<div class="panel">
+  <div class="sec">Selling Tags Strip</div>
+  <div class="cg"><label>Tag Text</label><textarea id="tagtxt" rows="2">LGBTQ+ &amp; Beginner Friendly  ·  Welcoming Community  ·  Be Whoever You Want</textarea></div>
+  <div class="cg"><label>Tag Font</label>
+    <select id="tagf">
+      <option value="Josefin Sans" selected>Josefin Sans</option>
+      <option value="Rajdhani">Rajdhani</option>
+      <option value="Exo 2">Exo 2</option>
+      <option value="Orbitron">Orbitron</option>
+    </select>
+  </div>
+  <div class="cg"><label>Text Size <span class="val" id="tagsv">17</span></label><input type="range" id="tagsz" min="10" max="38" value="17" oninput="tagsv.textContent=this.value"></div>
+  <div class="row2">
+    <div class="cg"><label>Strip BG</label><input type="color" id="stripbg" value="#1a0a2e"></div>
+    <div class="cg"><label>Strip Border</label><input type="color" id="stripbdr" value="#c084fc"></div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="sec">Picture Slots (4 boxes)</div>
+  <div class="slot-grid">
+    <div class="slot">
+      <div class="sec" style="margin-top:0;">Slot 1</div>
+      <div class="slot-ph" id="ph0">+</div><img class="slot-prev" id="prev0">
+      <input type="file" accept="image/*" id="file0">
+      <input type="text" id="slbl0" placeholder="Label">
+      <input type="color" id="sring0" value="#c084fc">
+    </div>
+    <div class="slot">
+      <div class="sec" style="margin-top:0;">Slot 2</div>
+      <div class="slot-ph" id="ph1">+</div><img class="slot-prev" id="prev1">
+      <input type="file" accept="image/*" id="file1">
+      <input type="text" id="slbl1" placeholder="Label">
+      <input type="color" id="sring1" value="#f472b6">
+    </div>
+    <div class="slot">
+      <div class="sec" style="margin-top:0;">Slot 3</div>
+      <div class="slot-ph" id="ph2">+</div><img class="slot-prev" id="prev2">
+      <input type="file" accept="image/*" id="file2">
+      <input type="text" id="slbl2" placeholder="Label">
+      <input type="color" id="sring2" value="#818cf8">
+    </div>
+    <div class="slot">
+      <div class="sec" style="margin-top:0;">Slot 4</div>
+      <div class="slot-ph" id="ph3">+</div><img class="slot-prev" id="prev3">
+      <input type="file" accept="image/*" id="file3">
+      <input type="text" id="slbl3" placeholder="Label">
+      <input type="color" id="sring3" value="#e879f9">
+    </div>
+  </div>
+  <div class="cg"><label>Box Size <span class="val" id="bszv">145</span></label><input type="range" id="bsz" min="80" max="280" value="145" oninput="bszv.textContent=this.value"></div>
+  <div class="cg"><label>Label Font</label>
+    <select id="lblf">
+      <option value="Rajdhani" selected>Rajdhani</option>
+      <option value="Josefin Sans">Josefin Sans</option>
+      <option value="Orbitron">Orbitron</option>
+      <option value="Exo 2">Exo 2</option>
+    </select>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="sec">Discord CTA</div>
+  <div class="cg"><label>Button Text</label><input type="text" id="ctabtn" value="JOIN NOW!"></div>
+  <div class="cg"><label>Discord Link</label><input type="text" id="ctalnk" value="discord.gg/veilrp"></div>
+  <div class="tog"><input type="checkbox" id="showdc" checked><label for="showdc">Show Discord Icon</label></div>
+</div>
+
+<div class="panel">
+  <div class="sec">Colors & Style</div>
+  <div class="row2">
+    <div class="cg"><label>Neon 1</label><input type="color" id="gc" value="#c084fc"></div>
+    <div class="cg"><label>Neon 2</label><input type="color" id="gc2" value="#f472b6"></div>
+  </div>
+  <div class="cg"><label>BG Brightness <span class="val" id="bbv">55</span>%</label><input type="range" id="bb" min="10" max="100" value="55" oninput="bbv.textContent=this.value"></div>
+  <div class="cg"><label>BG Blur <span class="val" id="blrv">2</span>px</label><input type="range" id="blr" min="0" max="12" value="2" oninput="blrv.textContent=this.value"></div>
+</div>
+
+<button onclick="render()">&#9654; Update Preview</button>
+<button class="bd" onclick="dl()">&#8595; Download PNG (800x1120)</button>
+</div>
+
+<canvas id="ad" width="800" height="1120" style="width:400px;height:560px;"></canvas>
+
 <script>
-var W=1920,H=1080;
+var W=800,H=1120;
 var slotImgs=[null,null,null,null];
 var bgImg=new Image(),logoImg=new Image(),logoReady=false;
 bgImg.onload=function(){render();};
@@ -211,361 +208,332 @@ function coverRRect(ctx,img,x,y,w,h,r){
   ctx.restore();
 }
 
-function neonDivider(ctx,y,c1,c2,w){
+function coverCircle(ctx,img,cx,cy,r){
+  ctx.save();ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.clip();
+  var sc=Math.max(r*2/img.width,r*2/img.height);
+  var sw=img.width*sc,sh=img.height*sc;
+  ctx.drawImage(img,cx-sw/2,cy-sh/2,sw,sh);
+  ctx.restore();
+}
+
+function drawCornerBrackets(ctx,gc,gc2){
+  var cm=18,cl=36,lw=2;
   ctx.save();
-  var m=W*(1-w)/2;
-  // main neon line
-  var lg=ctx.createLinearGradient(m,0,W-m,0);
-  lg.addColorStop(0,"rgba(0,0,0,0)");
-  lg.addColorStop(0.1,"rgba("+c1[0]+","+c1[1]+","+c1[2]+",0.8)");
-  lg.addColorStop(0.5,"rgba(255,255,255,1)");
-  lg.addColorStop(0.9,"rgba("+c2[0]+","+c2[1]+","+c2[2]+",0.8)");
-  lg.addColorStop(1,"rgba(0,0,0,0)");
-  ctx.strokeStyle=lg;ctx.lineWidth=1;
-  ctx.shadowColor="rgba("+c1[0]+","+c1[1]+","+c1[2]+",1)";ctx.shadowBlur=12;
-  ctx.beginPath();ctx.moveTo(m,y);ctx.lineTo(W-m,y);ctx.stroke();
-  // glow line below
-  ctx.shadowBlur=24;ctx.lineWidth=0.5;ctx.globalAlpha=0.4;
-  ctx.beginPath();ctx.moveTo(m,y+3);ctx.lineTo(W-m,y+3);ctx.stroke();
+  [[cm,cm,1,1,gc],[W-cm,cm,-1,1,gc2],[cm,H-cm,1,-1,gc2],[W-cm,H-cm,-1,-1,gc]].forEach(function(p){
+    var col="rgb("+p[4]+")";
+    ctx.strokeStyle=col;ctx.shadowColor=col;ctx.shadowBlur=10;ctx.lineWidth=lw;
+    ctx.beginPath();ctx.moveTo(p[0]+p[2]*cl,p[1]);ctx.lineTo(p[0],p[1]);ctx.lineTo(p[0],p[1]+p[3]*cl);ctx.stroke();
+  });
+  ctx.restore();
+}
+
+function drawDiscordIcon(ctx,cx,cy,sz,col){
+  ctx.save();
+  var s=sz/40;
+  ctx.translate(cx-20*s,cy-14*s);ctx.scale(s,s);
+  ctx.fillStyle=col;ctx.shadowColor=col;ctx.shadowBlur=8;
+  ctx.beginPath();
+  ctx.moveTo(33.7,2.0);ctx.bezierCurveTo(31.1,0.8,28.3,0,25.4,0);
+  ctx.bezierCurveTo(25.0,0.7,24.5,1.7,24.1,2.5);ctx.bezierCurveTo(21.0,2.0,17.9,2.0,14.9,2.5);
+  ctx.bezierCurveTo(14.5,1.7,14.0,0.7,13.5,0);ctx.bezierCurveTo(10.6,0,7.8,0.8,5.2,2.0);
+  ctx.bezierCurveTo(0.7,8.6,-0.5,15.0,0.1,21.3);ctx.bezierCurveTo(3.5,23.8,6.8,25.3,10.0,26.3);
+  ctx.bezierCurveTo(10.8,25.2,11.5,24.0,12.1,22.8);ctx.bezierCurveTo(10.9,22.4,9.8,21.8,8.7,21.2);
+  ctx.bezierCurveTo(9.0,21.0,9.3,20.7,9.5,20.5);ctx.bezierCurveTo(15.2,23.2,21.6,23.2,27.4,20.5);
+  ctx.bezierCurveTo(27.7,20.7,28.0,21.0,28.2,21.2);ctx.bezierCurveTo(27.1,21.8,26.0,22.4,24.8,22.8);
+  ctx.bezierCurveTo(25.4,24.0,26.1,25.2,26.9,26.3);ctx.bezierCurveTo(30.1,25.3,33.4,23.8,36.8,21.3);
+  ctx.bezierCurveTo(37.6,14.0,35.8,7.6,33.7,2.0);ctx.closePath();ctx.fill();
+  ctx.fillStyle="rgba(0,0,0,0.55)";
+  ctx.beginPath();ctx.ellipse(13,15,3.5,4,0,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.ellipse(26,15,3.5,4,0,0,Math.PI*2);ctx.fill();
   ctx.restore();
 }
 
 function render(){
   var c=document.getElementById("ad"),ctx=c.getContext("2d");
   var br=parseInt(document.getElementById("bb").value)/100;
+  var blr=parseInt(document.getElementById("blr").value);
   var gc=h2r(document.getElementById("gc").value);
   var gc2=h2r(document.getElementById("gc2").value);
-  var gi=parseInt(document.getElementById("gi").value);
-  var tf=document.getElementById("tf").value;
-  var sf=document.getElementById("sf").value;
-  var ff=document.getElementById("fff").value;
-  var wf=document.getElementById("wf").value;
-  var fsize=parseInt(document.getElementById("fsize").value);
-  var logoSz=parseInt(document.getElementById("ls").value);
   var lrc=h2r(document.getElementById("lrc").value);
-  var t=Date.now();
-  var blink=0.5+0.5*Math.sin(t*0.0022);
+  var logoSz=parseInt(document.getElementById("ls").value);
+  var hf=document.getElementById("hf").value;
+  var h1t=document.getElementById("h1t").value;
+  var h2t=document.getElementById("h2t").value;
+  var h1c=h2r(document.getElementById("h1c").value);
+  var h2c=h2r(document.getElementById("h2c").value);
+  var tagf=document.getElementById("tagf").value;
+  var tagtxt=document.getElementById("tagtxt").value;
+  var tagsz=parseInt(document.getElementById("tagsz").value);
+  var stripbg=h2r(document.getElementById("stripbg").value);
+  var stripbdr=h2r(document.getElementById("stripbdr").value);
+  var bsz=parseInt(document.getElementById("bsz").value);
+  var lblf=document.getElementById("lblf").value;
+  var ctabtn=document.getElementById("ctabtn").value;
+  var ctalnk=document.getElementById("ctalnk").value;
+  var showdc=document.getElementById("showdc").checked;
 
   ctx.clearRect(0,0,W,H);
 
-  // ---- BG ----
-  ctx.save();ctx.filter="brightness("+br+") saturate(1.1)";ctx.drawImage(bgImg,0,0,W,H);ctx.restore();
+  // BG
+  ctx.save();
+  var pad=blr*2;
+  if(blr>0) ctx.filter="brightness("+br+") saturate(1.1) blur("+blr+"px)";
+  else ctx.filter="brightness("+br+") saturate(1.1)";
+  ctx.drawImage(bgImg,-pad,-pad,W+pad*2,H+pad*2);
+  ctx.restore();
 
-  // Dark overlay - deeper at bottom
-  ctx.fillStyle="rgba(6,2,14,0.42)";ctx.fillRect(0,0,W,H);
-  var gBot=ctx.createLinearGradient(0,H*0.3,0,H);
-  gBot.addColorStop(0,"rgba(6,2,14,0)");
-  gBot.addColorStop(0.45,"rgba(6,2,14,0.62)");
-  gBot.addColorStop(1,"rgba(6,2,14,0.97)");
+  ctx.fillStyle="rgba(4,1,12,0.55)";ctx.fillRect(0,0,W,H);
+  var gBot=ctx.createLinearGradient(0,H*0.25,0,H);
+  gBot.addColorStop(0,"rgba(4,1,12,0)");gBot.addColorStop(0.4,"rgba(4,1,12,0.55)");gBot.addColorStop(1,"rgba(4,1,12,0.92)");
   ctx.fillStyle=gBot;ctx.fillRect(0,0,W,H);
 
-  // Top veil
-  var gTop=ctx.createLinearGradient(0,0,0,H*0.18);
-  gTop.addColorStop(0,"rgba(6,2,14,0.55)");gTop.addColorStop(1,"rgba(6,2,14,0)");
-  ctx.fillStyle=gTop;ctx.fillRect(0,0,W,H*0.18);
-
-  // Neon atmospheric bloom from sun position
-  var bloom=ctx.createRadialGradient(W/2,H*0.2,0,W/2,H*0.2,H*0.65);
-  bloom.addColorStop(0,"rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.1)");
-  bloom.addColorStop(0.4,"rgba("+gc2[0]+","+gc2[1]+","+gc2[2]+",0.05)");
+  var bloom=ctx.createRadialGradient(W/2,H*0.18,0,W/2,H*0.18,H*0.55);
+  bloom.addColorStop(0,"rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.12)");
+  bloom.addColorStop(0.5,"rgba("+gc2[0]+","+gc2[1]+","+gc2[2]+",0.05)");
   bloom.addColorStop(1,"rgba(0,0,0,0)");
   ctx.fillStyle=bloom;ctx.fillRect(0,0,W,H);
 
-  // Vignette
-  var vig=ctx.createRadialGradient(W/2,H/2,H*0.18,W/2,H/2,H*0.88);
-  vig.addColorStop(0,"rgba(0,0,0,0)");vig.addColorStop(1,"rgba(0,0,0,0.55)");
-  ctx.fillStyle=vig;ctx.fillRect(0,0,W,H);
+  var vigL=ctx.createLinearGradient(0,0,W*0.25,0);
+  vigL.addColorStop(0,"rgba(0,0,0,0.5)");vigL.addColorStop(1,"rgba(0,0,0,0)");
+  ctx.fillStyle=vigL;ctx.fillRect(0,0,W*0.25,H);
+  var vigR=ctx.createLinearGradient(W,0,W*0.75,0);
+  vigR.addColorStop(0,"rgba(0,0,0,0.5)");vigR.addColorStop(1,"rgba(0,0,0,0)");
+  ctx.fillStyle=vigR;ctx.fillRect(W*0.75,0,W*0.25,H);
 
-  // Subtle neon scanlines at very low opacity
-  ctx.save();ctx.globalAlpha=0.025;
-  for(var sy2=0;sy2<H;sy2+=6){
-    ctx.fillStyle="rgba("+gc[0]+","+gc[1]+","+gc[2]+",1)";
-    ctx.fillRect(0,sy2,W,1);
-  }
-  ctx.restore();
-
-  // ---- TAGLINE ----
-  var tagTxt=document.getElementById("tag").value;
-  var ty=H*0.072;
+  // Outer frame
   ctx.save();
-  ctx.font="700 44px '"+tf+"',serif";
-  ctx.textAlign="center";ctx.textBaseline="middle";
-  // neon glow stack
-  ctx.shadowColor="rgba("+gc[0]+","+gc[1]+","+gc[2]+",1)";ctx.shadowBlur=50;
-  ctx.fillStyle="rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.25)";ctx.fillText(tagTxt,W/2,ty);
-  ctx.shadowBlur=25;
-  ctx.fillStyle="rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.5)";ctx.fillText(tagTxt,W/2,ty);
-  ctx.shadowBlur=8;
-  ctx.fillStyle="rgba(245,235,255,0.98)";ctx.fillText(tagTxt,W/2,ty);
-  // flanking lines
-  var tw=ctx.measureText(tagTxt).width/2+30;
-  ctx.lineWidth=1;ctx.shadowBlur=0;
-  var ll=ctx.createLinearGradient(W/2-tw-140,0,W/2-tw,0);
-  ll.addColorStop(0,"rgba(0,0,0,0)");ll.addColorStop(1,"rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.8)");
-  ctx.strokeStyle=ll;ctx.shadowColor="rgba("+gc[0]+","+gc[1]+","+gc[2]+",1)";ctx.shadowBlur=6;
-  ctx.beginPath();ctx.moveTo(W/2-tw-130,ty);ctx.lineTo(W/2-tw,ty);ctx.stroke();
-  var lr=ctx.createLinearGradient(W/2+tw,0,W/2+tw+140,0);
-  lr.addColorStop(0,"rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.8)");lr.addColorStop(1,"rgba(0,0,0,0)");
-  ctx.strokeStyle=lr;
-  ctx.beginPath();ctx.moveTo(W/2+tw,ty);ctx.lineTo(W/2+tw+130,ty);ctx.stroke();
+  rrect(ctx,10,10,W-20,H-20,16);
+  ctx.strokeStyle="rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.5)";
+  ctx.lineWidth=2;ctx.shadowColor="rgb("+gc+")";ctx.shadowBlur=18;ctx.stroke();
+  rrect(ctx,15,15,W-30,H-30,14);
+  ctx.strokeStyle="rgba("+gc2[0]+","+gc2[1]+","+gc2[2]+",0.2)";
+  ctx.lineWidth=1;ctx.shadowBlur=8;ctx.stroke();
   ctx.restore();
 
-  // ---- LOGO CIRCLE ----
+  // LOGO CIRCLE
   var lcr=logoSz/2;
-  var lcx=W/2,lcy=H*0.13+lcr;
-  var logoBottom=lcy+lcr;
+  var lcx=W/2,lcy=80+lcr;
 
-  // Outer neon bloom
+  // Bloom
   ctx.save();
-  var lglow=ctx.createRadialGradient(lcx,lcy,lcr*0.5,lcx,lcy,lcr*2);
-  lglow.addColorStop(0,"rgba("+lrc[0]+","+lrc[1]+","+lrc[2]+",0.18)");
+  var lglow=ctx.createRadialGradient(lcx,lcy,0,lcx,lcy,lcr*2.2);
+  lglow.addColorStop(0,"rgba("+lrc[0]+","+lrc[1]+","+lrc[2]+",0.22)");
   lglow.addColorStop(1,"rgba(0,0,0,0)");
-  ctx.fillStyle=lglow;ctx.fillRect(lcx-lcr*2.2,lcy-lcr*2.2,lcr*4.4,lcr*4.4);
-  ctx.restore();
+  ctx.fillStyle=lglow;ctx.fillRect(lcx-lcr*2.5,lcy-lcr*2.5,lcr*5,lcr*5);ctx.restore();
 
   // Static neon rings
-  if(gi>0){
-    [lcr*0.12+14,lcr*0.07+7,lcr*0.03+3].forEach(function(off,ri){
-      var a=[0.22,0.45,0.68][ri];
-      ctx.save();
-      ctx.beginPath();ctx.arc(lcx,lcy,lcr+off,0,Math.PI*2);
-      ctx.strokeStyle="rgba("+lrc[0]+","+lrc[1]+","+lrc[2]+","+a+")";
-      ctx.lineWidth=[1,1.5,1][ri];
-      ctx.shadowColor="rgb("+lrc+")";ctx.shadowBlur=gi*a*1.2;
-      ctx.stroke();ctx.restore();
-    });
-  }
+  [lcr*0.12+12,lcr*0.06+6].forEach(function(off,ri){
+    ctx.save();
+    ctx.beginPath();ctx.arc(lcx,lcy,lcr+off,0,Math.PI*2);
+    ctx.strokeStyle="rgba("+lrc[0]+","+lrc[1]+","+lrc[2]+","+(ri===0?0.3:0.55)+")";
+    ctx.lineWidth=ri===0?1:1.5;
+    ctx.shadowColor="rgb("+lrc+")";ctx.shadowBlur=16;ctx.stroke();ctx.restore();
+  });
 
   // Dark fill
   ctx.save();ctx.beginPath();ctx.arc(lcx,lcy,lcr,0,Math.PI*2);
-  ctx.fillStyle="rgba(8,3,20,0.82)";ctx.fill();ctx.restore();
+  ctx.fillStyle="rgba(8,3,20,0.85)";ctx.fill();ctx.restore();
 
   // Logo image
-  if(logoReady){
-    ctx.save();ctx.beginPath();ctx.arc(lcx,lcy,lcr,0,Math.PI*2);ctx.clip();
-    var sc=Math.max(logoSz/logoImg.width,logoSz/logoImg.height);
-    var sw=logoImg.width*sc,sh=logoImg.height*sc;
-    ctx.drawImage(logoImg,lcx-sw/2,lcy-sh/2,sw,sh);ctx.restore();
-  }
+  if(logoReady) coverCircle(ctx,logoImg,lcx,lcy,lcr);
 
-  // Neon border
+  // Border
   ctx.save();ctx.beginPath();ctx.arc(lcx,lcy,lcr,0,Math.PI*2);
   ctx.strokeStyle="rgba("+lrc[0]+","+lrc[1]+","+lrc[2]+",0.9)";
   ctx.lineWidth=2;ctx.shadowColor="rgb("+lrc+")";ctx.shadowBlur=20;ctx.stroke();ctx.restore();
 
-  // Inner shimmer arc
+  // Shimmer arc
   ctx.save();
   var shimGrad=ctx.createLinearGradient(lcx-lcr,lcy,lcx+lcr,lcy);
-  shimGrad.addColorStop(0,"rgba(255,255,255,0)");
-  shimGrad.addColorStop(0.5,"rgba(255,255,255,0.18)");
-  shimGrad.addColorStop(1,"rgba(255,255,255,0)");
+  shimGrad.addColorStop(0,"rgba(255,255,255,0)");shimGrad.addColorStop(0.5,"rgba(255,255,255,0.22)");shimGrad.addColorStop(1,"rgba(255,255,255,0)");
   ctx.strokeStyle=shimGrad;ctx.lineWidth=1;
-  ctx.beginPath();ctx.arc(lcx,lcy,lcr-1,-Math.PI*0.85,-Math.PI*0.15);ctx.stroke();
+  ctx.beginPath();ctx.arc(lcx,lcy,lcr-1,-Math.PI*0.85,-Math.PI*0.15);ctx.stroke();ctx.restore();
+
+  // HERO TEXT
+  var heroY=lcy+lcr+68;
+
+  ctx.save();
+  ctx.font="900 86px '"+hf+"',serif";
+  ctx.textAlign="center";ctx.textBaseline="middle";
+  ctx.shadowColor="rgba("+h1c[0]+","+h1c[1]+","+h1c[2]+",0.8)";ctx.shadowBlur=30;
+  ctx.fillStyle="rgba("+h1c[0]+","+h1c[1]+","+h1c[2]+",0.25)";ctx.fillText(h1t,W/2,heroY);
+  ctx.shadowBlur=12;ctx.fillStyle="rgb("+h1c+")";ctx.fillText(h1t,W/2,heroY);
+  ctx.restore();
+
+  var h2y=heroY+68;
+  ctx.save();
+  ctx.font="300 italic 28px '"+hf+"',serif";
+  ctx.textAlign="center";ctx.textBaseline="middle";
+  ctx.shadowColor="rgb("+h2c+")";ctx.shadowBlur=20;
+  ctx.fillStyle="rgba("+h2c[0]+","+h2c[1]+","+h2c[2]+",0.35)";ctx.fillText(h2t,W/2,h2y);
+  ctx.shadowBlur=8;ctx.fillStyle="rgb("+h2c+")";ctx.fillText(h2t,W/2,h2y);
   ctx.restore();
 
   // Divider 1
-  neonDivider(ctx,logoBottom+28,gc,gc2,0.62);
+  var div1Y=h2y+42;
+  ctx.save();
+  var dg=ctx.createLinearGradient(40,0,W-40,0);
+  dg.addColorStop(0,"rgba(0,0,0,0)");dg.addColorStop(0.15,"rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.7)");
+  dg.addColorStop(0.5,"rgba(255,255,255,0.9)");dg.addColorStop(0.85,"rgba("+gc2[0]+","+gc2[1]+","+gc2[2]+",0.7)");
+  dg.addColorStop(1,"rgba(0,0,0,0)");
+  ctx.strokeStyle=dg;ctx.lineWidth=1;ctx.shadowColor="rgb("+gc+")";ctx.shadowBlur=8;
+  ctx.beginPath();ctx.moveTo(40,div1Y);ctx.lineTo(W-40,div1Y);ctx.stroke();ctx.restore();
 
-  // ---- PROFILE SQUARES ----
-  var active=[];
+  // SELLING TAGS STRIP - height scales with font size
+  var stripY=div1Y+16;
+  var stripH=Math.max(54, tagsz*3.2);
+  var stripX=28,stripW=W-56;
+  ctx.save();
+  rrect(ctx,stripX,stripY,stripW,stripH,10);
+  ctx.fillStyle="rgba("+stripbg[0]+","+stripbg[1]+","+stripbg[2]+",0.85)";ctx.fill();
+  ctx.strokeStyle="rgba("+stripbdr[0]+","+stripbdr[1]+","+stripbdr[2]+",0.7)";
+  ctx.lineWidth=1.5;ctx.shadowColor="rgb("+stripbdr+")";ctx.shadowBlur=12;ctx.stroke();
+  ctx.restore();
+  ctx.save();
+  ctx.font="300 "+tagsz+"px '"+tagf+"',sans-serif";
+  ctx.textAlign="center";ctx.textBaseline="middle";
+  var tg=ctx.createLinearGradient(stripX,0,stripX+stripW,0);
+  tg.addColorStop(0,"rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.9)");
+  tg.addColorStop(0.4,"rgba(255,235,255,1)");
+  tg.addColorStop(0.6,"rgba("+gc2[0]+","+gc2[1]+","+gc2[2]+",1)");
+  tg.addColorStop(1,"rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.9)");
+  ctx.fillStyle=tg;
+  ctx.fillText(tagtxt,W/2,stripY+stripH/2);
+  ctx.restore();
+
+  // PICTURE SLOTS GRID
+  var slotZoneY=stripY+stripH+32;
+  var slotSize=bsz,slotRad=12;
+  var gridGapX=20,gridGapY=20;
+  var gridW=2*slotSize+gridGapX;
+  var gridX=(W-gridW)/2;
+
   for(var i=0;i<4;i++){
-    if(document.getElementById("sshow"+i).checked && slotImgs[i]!==null){
-      active.push({
-        img:slotImgs[i],
-        lbl:document.getElementById("slbl"+i).value,
-        ring:h2r(document.getElementById("sring"+i).value),
-        sz:parseInt(document.getElementById("ssz"+i).value)
-      });
+    var col=i%2,row=Math.floor(i/2);
+    var sx=gridX+col*(slotSize+gridGapX);
+    var sy=slotZoneY+row*(slotSize+gridGapY+36);
+    var ring=h2r(document.getElementById("sring"+i).value);
+    var img=slotImgs[i];
+    var lbl=document.getElementById("slbl"+i).value;
+
+    ctx.save();
+    var ag=ctx.createRadialGradient(sx+slotSize/2,sy+slotSize/2,0,sx+slotSize/2,sy+slotSize/2,slotSize*0.7);
+    ag.addColorStop(0,"rgba("+ring[0]+","+ring[1]+","+ring[2]+",0.15)");ag.addColorStop(1,"rgba(0,0,0,0)");
+    ctx.fillStyle=ag;ctx.fillRect(sx-slotSize*0.25,sy-slotSize*0.25,slotSize*1.5,slotSize*1.5);ctx.restore();
+
+    ctx.save();rrect(ctx,sx-8,sy-8,slotSize+16,slotSize+16,slotRad+8);
+    ctx.strokeStyle="rgba("+ring[0]+","+ring[1]+","+ring[2]+",0.35)";
+    ctx.lineWidth=1;ctx.shadowColor="rgb("+ring+")";ctx.shadowBlur=20;ctx.stroke();ctx.restore();
+
+    ctx.save();rrect(ctx,sx,sy,slotSize,slotSize,slotRad);
+    ctx.fillStyle="rgba(8,3,20,0.7)";ctx.fill();ctx.restore();
+
+    if(!img){
+      ctx.save();rrect(ctx,sx,sy,slotSize,slotSize,slotRad);ctx.clip();
+      ctx.fillStyle="rgba(8,3,20,0.7)";ctx.fillRect(sx,sy,slotSize,slotSize);
+      ctx.setLineDash([6,4]);
+      ctx.strokeStyle="rgba("+ring[0]+","+ring[1]+","+ring[2]+",0.25)";ctx.lineWidth=1;
+      ctx.beginPath();ctx.moveTo(sx+slotSize/2,sy+12);ctx.lineTo(sx+slotSize/2,sy+slotSize-12);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(sx+12,sy+slotSize/2);ctx.lineTo(sx+slotSize-12,sy+slotSize/2);ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.font="500 12px 'Space Grotesk',Arial";ctx.textAlign="center";ctx.textBaseline="middle";
+      ctx.fillStyle="rgba("+ring[0]+","+ring[1]+","+ring[2]+",0.4)";
+      ctx.fillText("ADD IMAGE",sx+slotSize/2,sy+slotSize/2);
+      ctx.restore();
+    } else {
+      coverRRect(ctx,img,sx,sy,slotSize,slotSize,slotRad);
+    }
+
+    ctx.save();rrect(ctx,sx,sy,slotSize,slotSize,slotRad);
+    ctx.strokeStyle="rgba("+ring[0]+","+ring[1]+","+ring[2]+",0.9)";
+    ctx.lineWidth=2;ctx.shadowColor="rgb("+ring+")";ctx.shadowBlur=16;ctx.stroke();ctx.restore();
+
+    ctx.save();
+    var sh=ctx.createLinearGradient(sx,sy,sx+slotSize,sy);
+    sh.addColorStop(0,"rgba(255,255,255,0)");sh.addColorStop(0.5,"rgba(255,255,255,0.18)");sh.addColorStop(1,"rgba(255,255,255,0)");
+    ctx.strokeStyle=sh;ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(sx+slotRad,sy);ctx.lineTo(sx+slotSize-slotRad,sy);ctx.stroke();ctx.restore();
+
+    if(lbl){
+      ctx.save();
+      ctx.font="600 16px '"+lblf+"',Arial";
+      ctx.textAlign="center";ctx.textBaseline="top";
+      ctx.shadowColor="rgb("+ring+")";ctx.shadowBlur=8;
+      ctx.fillStyle="rgba("+ring[0]+","+ring[1]+","+ring[2]+",0.95)";
+      ctx.fillText(lbl,sx+slotSize/2,sy+slotSize+7);ctx.restore();
     }
   }
 
-  var slotZoneTop=logoBottom+55;
-
-  if(active.length>0){
-    var maxSz=active.reduce(function(m,a){return Math.max(m,a.sz);},0);
-    var slotGap=28;
-    var totalW2=active.reduce(function(s,a){return s+a.sz;},0)+(active.length-1)*slotGap;
-    var startX=(W-totalW2)/2;
-    var slotRad=14;
-    var cx2=startX;
-
-    active.forEach(function(av,i){
-      var sz=av.sz;
-      var sy=slotZoneTop+(maxSz-sz)/2;
-      var ba=0.45+0.55*Math.sin(t*0.003+i*1.4);
-      var ring=av.ring;
-
-      // Neon ambient glow
-      ctx.save();
-      var ag=ctx.createRadialGradient(cx2+sz/2,sy+sz/2,0,cx2+sz/2,sy+sz/2,sz*0.75);
-      ag.addColorStop(0,"rgba("+ring[0]+","+ring[1]+","+ring[2]+",0.18)");
-      ag.addColorStop(1,"rgba(0,0,0,0)");
-      ctx.fillStyle=ag;ctx.fillRect(cx2-sz*0.3,sy-sz*0.3,sz*1.6,sz*1.6);ctx.restore();
-
-      // Dark glass fill
-      ctx.save();rrect(ctx,cx2,sy,sz,sz,slotRad);ctx.fillStyle="rgba(8,3,20,0.7)";ctx.fill();ctx.restore();
-
-      // Image
-      coverRRect(ctx,av.img,cx2,sy,sz,sz,slotRad);
-
-      // Outer blink neon ring
-      ctx.save();rrect(ctx,cx2-9,sy-9,sz+18,sz+18,slotRad+9);
-      ctx.strokeStyle="rgba("+ring[0]+","+ring[1]+","+ring[2]+",0.4)";
-      ctx.lineWidth=1;ctx.shadowColor="rgb("+ring+")";ctx.shadowBlur=22;ctx.stroke();ctx.restore();
-
-      // Main neon border
-      ctx.save();rrect(ctx,cx2,sy,sz,sz,slotRad);
-      ctx.strokeStyle="rgba("+ring[0]+","+ring[1]+","+ring[2]+",0.95)";
-      ctx.lineWidth=2;ctx.shadowColor="rgb("+ring+")";ctx.shadowBlur=18;ctx.stroke();ctx.restore();
-
-      // Top shimmer
-      ctx.save();
-      var sh2=ctx.createLinearGradient(cx2,sy,cx2+sz,sy);
-      sh2.addColorStop(0,"rgba(255,255,255,0)");sh2.addColorStop(0.45,"rgba(255,255,255,0.16)");sh2.addColorStop(1,"rgba(255,255,255,0)");
-      ctx.strokeStyle=sh2;ctx.lineWidth=1;
-      ctx.beginPath();ctx.moveTo(cx2+slotRad,sy);ctx.lineTo(cx2+sz-slotRad,sy);ctx.stroke();ctx.restore();
-
-      // Label
-      if(av.lbl){
-        ctx.save();
-        ctx.font="300 20px 'Josefin Sans',sans-serif";
-        ctx.textAlign="center";ctx.textBaseline="top";
-        ctx.shadowColor="rgba(0,0,0,1)";ctx.shadowBlur=12;ctx.shadowOffsetY=2;
-        ctx.fillStyle="rgba(185,165,215,0.85)";
-        ctx.fillText(av.lbl,cx2+sz/2,sy+sz+10);ctx.restore();
-      }
-      cx2+=sz+slotGap;
-    });
-
-    var sep2Y=slotZoneTop+maxSz+52;
-    neonDivider(ctx,sep2Y,gc2,gc,0.5);
-    drawStory(ctx,sep2Y+38,sf,gc,gc2);
-    drawFeatures(ctx,H*0.875,ff,fsize,gc,gc2);
-  } else {
-    drawStory(ctx,slotZoneTop+22,sf,gc,gc2);
-    drawFeatures(ctx,H*0.875,ff,fsize,gc,gc2);
-  }
-
-  // ---- WELCOME LINE ----
-  drawWelcomeLine(ctx,wf,gc,gc2);
-
-  // ---- CORNER ACCENTS ----
+  // Divider 2
+  var gridBottomY=slotZoneY+2*(slotSize+36)+gridGapY+8;
+  var div2Y=gridBottomY+10;
   ctx.save();
-  var cm=35,cs=55;
-  [[cm,cm,1,1],[W-cm,cm,-1,1],[cm,H-cm,1,-1],[W-cm,H-cm,-1,-1]].forEach(function(p,i){
-    var col=i%2===0?"rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.6)":"rgba("+gc2[0]+","+gc2[1]+","+gc2[2]+",0.6)";
-    var ncol=i%2===0?"rgb("+gc+")":"rgb("+gc2+")";
-    ctx.strokeStyle=col;ctx.shadowColor=ncol;ctx.shadowBlur=10;ctx.lineWidth=1.5;
-    ctx.beginPath();ctx.moveTo(p[0]+p[2]*cs,p[1]);ctx.lineTo(p[0],p[1]);ctx.lineTo(p[0],p[1]+p[3]*cs);ctx.stroke();
-    ctx.lineWidth=0.5;ctx.shadowBlur=0;
-    ctx.beginPath();ctx.moveTo(p[0]+p[2]*(cs+12),p[1]+p[3]*10);ctx.lineTo(p[0]+p[2]*(cs+28),p[1]+p[3]*10);ctx.stroke();
-    ctx.lineWidth=1.5;
-  });
-  ctx.restore();
-}
+  var dg2=ctx.createLinearGradient(40,0,W-40,0);
+  dg2.addColorStop(0,"rgba(0,0,0,0)");dg2.addColorStop(0.15,"rgba("+gc2[0]+","+gc2[1]+","+gc2[2]+",0.7)");
+  dg2.addColorStop(0.5,"rgba(255,255,255,0.85)");dg2.addColorStop(0.85,"rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.7)");
+  dg2.addColorStop(1,"rgba(0,0,0,0)");
+  ctx.strokeStyle=dg2;ctx.lineWidth=1;ctx.shadowColor="rgb("+gc2+")";ctx.shadowBlur=8;
+  ctx.beginPath();ctx.moveTo(40,div2Y);ctx.lineTo(W-40,div2Y);ctx.stroke();ctx.restore();
 
-function drawStory(ctx,y,sf,gc,gc2){
+  // DISCORD CTA - small, centered
+  var ctaY=div2Y+18;
+  var ctaH=46;
+  var ctaX=120,ctaW=W-240;
+
   ctx.save();
-  ctx.font="300 italic 30px '"+sf+"',sans-serif";
-  ctx.textAlign="center";ctx.textBaseline="middle";
-  ctx.shadowColor="rgba(0,0,0,0.9)";ctx.shadowBlur=16;ctx.shadowOffsetY=2;
-  ctx.fillStyle="rgba(185,165,215,0.82)";
-  ctx.fillText(document.getElementById("st").value,W/2,y);
-  ctx.restore();
-}
+  rrect(ctx,ctaX,ctaY,ctaW,ctaH,10);
+  var ctaBg=ctx.createLinearGradient(ctaX,ctaY,ctaX+ctaW,ctaY);
+  ctaBg.addColorStop(0,"rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.18)");
+  ctaBg.addColorStop(0.5,"rgba("+gc2[0]+","+gc2[1]+","+gc2[2]+",0.25)");
+  ctaBg.addColorStop(1,"rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.18)");
+  ctx.fillStyle=ctaBg;ctx.fill();
+  ctx.strokeStyle="rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.8)";
+  ctx.lineWidth=1.5;ctx.shadowColor="rgb("+gc+")";ctx.shadowBlur=16;ctx.stroke();ctx.restore();
 
-function drawFeatures(ctx,fy,ff,fsize,gc,gc2){
-  var feats=[document.getElementById("f1").value,document.getElementById("f2").value,
-             document.getElementById("f3").value,document.getElementById("f4").value];
-  var fCols=[[gc[0],gc[1],gc[2]],[gc2[0],gc2[1],gc2[2]],[180,160,255],[220,130,255]];
-  ctx.font="600 "+fsize+"px '"+ff+"',Arial";ctx.textBaseline="middle";
-  var pads=26,gap=16;
-  var ws=feats.map(function(t){return ctx.measureText(t).width;});
-  var total=ws.reduce(function(a,b){return a+b;},0)+feats.length*pads*2+(feats.length-1)*gap;
-  var px=(W-total)/2;
-  feats.forEach(function(txt,i){
-    var fc=fCols[i],pw=ws[i]+pads*2,ph=Math.round(fsize*1.7),rx=px,ry=fy-ph/2,r=6;
-    // neon glass bg
-    ctx.save();rrect(ctx,rx,ry,pw,ph,r);
-    var gbg=ctx.createLinearGradient(rx,ry,rx,ry+ph);
-    gbg.addColorStop(0,"rgba("+fc[0]+","+fc[1]+","+fc[2]+",0.14)");
-    gbg.addColorStop(1,"rgba("+fc[0]+","+fc[1]+","+fc[2]+",0.04)");
-    ctx.fillStyle=gbg;ctx.fill();ctx.restore();
-    // neon border
-    ctx.save();rrect(ctx,rx,ry,pw,ph,r);
-    ctx.strokeStyle="rgba("+fc[0]+","+fc[1]+","+fc[2]+",0.6)";
-    ctx.lineWidth=1;ctx.shadowColor="rgb("+fc+")";ctx.shadowBlur=12;ctx.stroke();ctx.restore();
-    // shimmer
-    ctx.save();ctx.lineWidth=1;ctx.shadowBlur=0;
-    var fs=ctx.createLinearGradient(rx,0,rx+pw,0);
-    fs.addColorStop(0,"rgba(255,255,255,0)");fs.addColorStop(0.5,"rgba(255,255,255,0.2)");fs.addColorStop(1,"rgba(255,255,255,0)");
-    ctx.strokeStyle=fs;ctx.beginPath();ctx.moveTo(rx+r,ry+0.5);ctx.lineTo(rx+pw-r,ry+0.5);ctx.stroke();ctx.restore();
-    // left neon accent bar
-    ctx.save();ctx.shadowColor="rgb("+fc+")";ctx.shadowBlur=10;
-    ctx.fillStyle="rgba("+fc[0]+","+fc[1]+","+fc[2]+",0.9)";
-    ctx.fillRect(rx,ry+ph*0.2,2,ph*0.6);ctx.restore();
-    // text
-    ctx.save();ctx.font="600 "+fsize+"px '"+ff+"',Arial";
+  // Shimmer on button
+  ctx.save();
+  var bsh=ctx.createLinearGradient(ctaX,ctaY,ctaX+ctaW,ctaY);
+  bsh.addColorStop(0,"rgba(255,255,255,0)");bsh.addColorStop(0.5,"rgba(255,255,255,0.14)");bsh.addColorStop(1,"rgba(255,255,255,0)");
+  ctx.strokeStyle=bsh;ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(ctaX+10,ctaY+1);ctx.lineTo(ctaX+ctaW-10,ctaY+1);ctx.stroke();ctx.restore();
+
+  // Centered icon + text group
+  var centerX=ctaX+ctaW/2;
+  ctx.font="700 19px '"+hf+"',serif";
+  var btnW=ctx.measureText(ctabtn).width;
+  if(showdc){
+    var iconSz=22,iconGap=10;
+    var groupW=iconSz+iconGap+btnW;
+    var gsx=centerX-groupW/2;
+    drawDiscordIcon(ctx,gsx+iconSz/2,ctaY+ctaH*0.42,iconSz,"rgb("+gc+")");
+    ctx.save();ctx.font="700 19px '"+hf+"',serif";
     ctx.textAlign="left";ctx.textBaseline="middle";
-    ctx.shadowColor="rgba(0,0,0,0.7)";ctx.shadowBlur=6;ctx.shadowOffsetY=1;
-    ctx.fillStyle="rgba(235,220,255,0.95)";
-    ctx.fillText(txt,rx+pads,fy);ctx.restore();
-    px+=pw+gap;
-  });
-}
-
-function drawWelcomeLine(ctx,wf,gc,gc2){
-  var txt=document.getElementById("wt").value;
-  var y=H*0.958;
-
-  // Full-width neon bar behind welcome line
-  var barH=52;
-  ctx.save();
-  var barGrad=ctx.createLinearGradient(0,0,W,0);
-  barGrad.addColorStop(0,"rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.08)");
-  barGrad.addColorStop(0.25,"rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.18)");
-  barGrad.addColorStop(0.5,"rgba("+gc2[0]+","+gc2[1]+","+gc2[2]+",0.22)");
-  barGrad.addColorStop(0.75,"rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.18)");
-  barGrad.addColorStop(1,"rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.08)");
-  ctx.fillStyle=barGrad;ctx.fillRect(0,y-barH/2,W,barH);
-
-  // Top neon line of bar
-  var topLine=ctx.createLinearGradient(0,0,W,0);
-  topLine.addColorStop(0,"rgba("+gc[0]+","+gc[1]+","+gc[2]+",0)");
-  topLine.addColorStop(0.15,"rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.7)");
-  topLine.addColorStop(0.5,"rgba(255,255,255,0.9)");
-  topLine.addColorStop(0.85,"rgba("+gc2[0]+","+gc2[1]+","+gc2[2]+",0.7)");
-  topLine.addColorStop(1,"rgba("+gc2[0]+","+gc2[1]+","+gc2[2]+",0)");
-  ctx.strokeStyle=topLine;ctx.lineWidth=1;
-  ctx.shadowColor="rgb("+gc+")";ctx.shadowBlur=8;
-  ctx.beginPath();ctx.moveTo(0,y-barH/2);ctx.lineTo(W,y-barH/2);ctx.stroke();
-  ctx.restore();
-
-  // Text with neon gradient fill
-  ctx.save();
-  ctx.font="300 28px '"+wf+"',sans-serif";
+    ctx.shadowColor="rgb("+gc+")";ctx.shadowBlur=12;
+    ctx.fillStyle="rgba(245,235,255,0.98)";
+    ctx.fillText(ctabtn,gsx+iconSz+iconGap,ctaY+ctaH*0.4);ctx.restore();
+  } else {
+    ctx.save();ctx.font="700 19px '"+hf+"',serif";
+    ctx.textAlign="center";ctx.textBaseline="middle";
+    ctx.shadowColor="rgb("+gc+")";ctx.shadowBlur=12;
+    ctx.fillStyle="rgba(245,235,255,0.98)";
+    ctx.fillText(ctabtn,centerX,ctaY+ctaH*0.4);ctx.restore();
+  }
+  ctx.save();ctx.font="300 12px 'Josefin Sans',sans-serif";
   ctx.textAlign="center";ctx.textBaseline="middle";
+  ctx.shadowColor="rgba(0,0,0,0.8)";ctx.shadowBlur=6;
+  ctx.fillStyle="rgba("+gc2[0]+","+gc2[1]+","+gc2[2]+",0.88)";
+  ctx.fillText(ctalnk,centerX,ctaY+ctaH*0.72);ctx.restore();
 
-  // Neon text glow
-  ctx.shadowColor="rgba("+gc[0]+","+gc[1]+","+gc[2]+",1)";ctx.shadowBlur=20;
-  ctx.fillStyle="rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.3)";ctx.fillText(txt,W/2,y);
-  ctx.shadowBlur=8;
-
-  // Gradient text color left to right gc -> gc2 -> gc
-  var tg2=ctx.createLinearGradient(0,0,W,0);
-  tg2.addColorStop(0,"rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.9)");
-  tg2.addColorStop(0.3,"rgba(255,230,255,1)");
-  tg2.addColorStop(0.5,"rgba("+gc2[0]+","+gc2[1]+","+gc2[2]+",1)");
-  tg2.addColorStop(0.7,"rgba(255,230,255,1)");
-  tg2.addColorStop(1,"rgba("+gc[0]+","+gc[1]+","+gc[2]+",0.9)");
-  ctx.fillStyle=tg2;
-  ctx.fillText(txt,W/2,y);
-  ctx.restore();
+  drawCornerBrackets(ctx,gc,gc2);
 }
 
-requestAnimationFrame(function loop(){render();requestAnimationFrame(loop);});
+function dl(){
+  render();
+  var a=document.createElement("a");a.download="veilrp_poster.png";
+  a.href=document.getElementById("ad").toDataURL("image/png");a.click();
+}
 
-function dl(){render();var a=document.createElement("a");a.download="veilrp_ad.png";a.href=document.getElementById("ad").toDataURL("image/png");a.click();}
+render();
 </script>
 </body>
 </html>
